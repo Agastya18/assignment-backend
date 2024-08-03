@@ -1,12 +1,15 @@
 import express from 'express';
-
+import bodyParser from 'body-parser';
+import contactRoute from './routes/contactRoute';
 const app = express();
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+const PORT = process.env.PORT || 8000;
+
+app.use('/',contactRoute);
 
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
